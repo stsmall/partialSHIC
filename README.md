@@ -15,19 +15,30 @@ Example files include bash scripts that are hardcoded for the Xue et al. paper. 
 ### Train CNN classifier
  * `python3 training_deep_learning.py fvecDir fvecFiles numSubWins numSumStatsPerSubWin validationSize weightsFileName jsonFileName npyFileName`  
  * `python3 training_deep_learning.py trainingData/FVs default 11 89 0.1 trainingData/pop.hdf5 trainingData/pop.json trainingData/pop.npy`  
- * default here refers to all expected fvecs: neut.fvec,hard.fvec,linkedHard.fvec,soft.fvec,linkedSoft.fvec,partialHard.fvec,linkedPartialHard.fvec,partialSoft.fvec,linkedPartialSoft.fvec  
+ * default here refers to all expected fvecs
+   * neut.fvec
+   * hard.fvec
+   * linkedHard.fvec
+   * soft.fvec
+   * linkedSoft.fvec
+   * partialHard.fvec
+   * linkedPartialHard.fvec
+   * partialSoft.fvec
+   * linkedPartialSoft.fvec  
 #### *(alternative)* Train CNN for five-state classification only (i.e. without partial sweeps, similar to disploSHIC) 
  * `python3 training_deep_learning_5-state-complete-sweeps-only.py trainingData/FVs default 11 89 0.1 trainingData/pop.hdf5 trainingData/pop.json trainingData/pop.npy`  
- * default here refers to all but the partial ones: neut.fvec,hard.fvec,linkedHard.fvec,soft.fvec,linkedSoft.fvec  
-
-
+ * default here refers to all the fvecs except the partial ones
+   * neut.fvec
+   * hard.fvec
+   * linkedHard.fvec
+   * soft.fvec
+   * linkedSoft.fvec  
 ## Testing
-### Test data to feature vectors  
- * `testing_convert_to_FVs.sh`  
- * `testing_convert_to_FVs.py`  
+### Test data to feature vectors  *Same options as sims*
+ * `python2 testing_convert_to_FVs.py spNeut.msOut.gz 2L,2R,3L,3R 5000 11 0.25 $pMisPol AOM_partial_stats.txt Anopheles-gambiae-PEST_CHROMOSOMES_AgamP3.accessible.fa anc.meru_mela.fa ./ spNeut.msOut.fvec` 
 ### Classify test data  
- * `testing_deep_learning_classify.sh`  
- * `testing_deep_learning_classify.py`  
+ * `python3 testing_deep_learning_classify.py classifierPickleFileName fvecDir numSubWins numSumStatsPerSubWin resultsDir accuracyFilesPrefix confusionMatrixFigFileName`
+ * `python3 testing_deep_learning_classify.py testingData/FVs_no_nSL/$pop/ 11 89 testingData/ accuracy confusion_matrix.pdf`  
 #### *(alternative)* Classify test data using five-state classifier (see above)  
  * `testing_deep_learning_classify_5-state-complete-sweeps-only.sh`  
  * `testing_deep_learning_classify_5-state-complete-sweeps-only.py`  
