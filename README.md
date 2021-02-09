@@ -31,7 +31,7 @@ Example files include bash scripts that are hardcoded for the Xue et al. paper. 
  * `testing_deep_learning_classify_5-state-complete-sweeps-only.py`  
 
 ## Empirical *(real data)*  
-### Feature vectors from real data *(data should be in h5 format)  
+### Feature vectors from real data *(data should be in h5 format)*  
 *(NOTE)Xue et al, did not detail how this was done (or I missed it). I am using scikit-allel to load a vcf and save as an h5* 
  * `empirical_convert_to_FVs.sh`  
  * `empirical_convert_to_FVs.py`  
