@@ -1,5 +1,3 @@
-import time
-startTime=time.clock()
 import sys
 import h5py
 import allel
@@ -21,11 +19,12 @@ else:
   segmentStart=None
 
 chrArmFile=h5py.File(chrArmFileName,"r")
-genos=allel.GenotypeChunkedArray(chrArmFile[chrArm]["calldata"]["genotype"])
-positions=allel.SortedIndex(chrArmFile["/%s/variants/POS" %(chrArm)][:])
-refAlleles=chrArmFile[chrArm]['variants']['REF']
-altAlleles=chrArmFile[chrArm]['variants']['ALT']
-samples=chrArmFile[chrArm]["samples"]
+genos=allel.GenotypeChunkedArray(chrArmFile["calldata/GT"])
+positions=allel.SortedIndex(chrArmFile["variants/POS"])
+refAlleles=chrArmFile['variants/REF']
+altAlleles=chrArmFile['variants/ALT']
+samples=chrArmFile["samples"]
+
 chrLen=int(chrLen)
 assert chrLen>0
 if segmentStart!=None:
@@ -275,5 +274,4 @@ for subWinStart in range(firstSubWinStart,lastSubWinStart+1,subWinSize):
 if statFileName:
   statFile.close()
 fvecFile.close()
-sys.stderr.write("total time spent calculating summary statistics and generating feature vectors: %g secs\n" %(time.clock()-startTime))
 
