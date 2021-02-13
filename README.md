@@ -42,11 +42,11 @@ Evaluate the accuracy of your classification on test data. **Do not use the same
  * `python testing_deep_learning_classify.py classifier/model.npy testingData/ 11 90 testingData/ accuracy confusion_matrix.pdf`  
 
 ## Empirical *(real data)*  
+If you use [scikit-allel](http://alimanfoo.github.io/2017/06/14/read-vcf.html) you can run `allel.vcf_to_hdf5('example.vcf', 'example.h5', fields='*', overwrite=True)` to make an h5 file.  
 ### Feature vectors from real data *(data should be in h5 format)*  
-*(NOTE)Xue et al, did not detail how this was done (or I missed it). I am using scikit-allel to load a vcf and save as an h5* 
- * `python2 empirical_convert_to_FVs.py chrArmFileName chrArm chrLen [segmentStart segmentEnd] subWinSize numSubWins unmaskedFracCutoff pMisPol partialStatAndDafFileName maskFileName ancestralArmFaFileName sampleToPopFileName targetPop statFileName fvecFileName`  
- * `python2 empirical_convert_to_FVs.py ag1000g.phase1.ar3.haplotypes.2L.h5 2L 49364325 1 5000000 5000 11 0.25 0.01 AOM_partial_stats.txt Anopheles-gambiae-PEST_CHROMOSOMES_AgamP3.accessible.fa anc.meru_mela.2L.fa samples_pops.txt AOM 2L.1.stats 2L.1.fvec`  
+ * `python empirical_convert_to_FVs.py chrArmFileName chrArm chrLen [segmentStart segmentEnd] subWinSize numSubWins unmaskedFracCutoff pMisPol partialStatAndDafFileName maskFileName ancestralArmFaFileName sampleToPopFileName targetPop statFileName fvecFileName`  
+ * `python empirical_convert_to_FVs.py species.chr2.h5 2 49000000 1 5000000 5000 11 0.25 0.01 neutral_partial_stats.txt genome_accessible.fa ancestral.fa samples_pops.txt POP1 chr2.1-5mb.stats chr2.1-5mb.fvec`  
  * `empirical_merge_FVs.sh`  *this is necessary only if you step through the VCF(h5) in segments*  
 ### Classify feature vectors from real data  
- * `python3 empirical_deep_learning_classify.py classifierPickleFileName fvecFileName numSubWins numSumStatsPerSubWin bedFileName`  
- * `python3 empirical_deep_learning_classify.py trainingData/pop.npy empiricalData/FVs/pop.chrArm.fvec 11 89 empiricalData/pop.chrArm.bed`  
+ * `python empirical_deep_learning_classify.py classifierPickleFileName fvecFileName numSubWins numSumStatsPerSubWin bedFileName`  
+ * `python empirical_deep_learning_classify.py classifier/model.npy empiricalData/pop1.chr2.fvec 11 90 results/pop1.chr2.bed`  
