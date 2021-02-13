@@ -12,7 +12,7 @@ Train data with discoal in same way as described in the diploSHIC [soup-to-nuts]
 ### Simulated data to feature vectors  
  *sims should be gzipped and in ms format*  
  * `python training_convert_to_FVs.py trainingDataFileName chrArmsForMasking subWinSize numSubWins unmaskedFracCutoff pMisPol partialStatAndDafFileName maskFileName ancestralArmFaFileName statDir fvecFileName`
- * `python training_convert_to_FVs.py trainingData/hard_5.msOut.gz 3R 5000 11 0.25 0.01 neutral_partial_stats.txt genome_accessible.fa ancestral.fa outFile.fvec`  
+ * `python training_convert_to_FVs.py trainingData/hard_5.msOut.gz 3R 5000 11 0.25 0.01 neutral_partial_stats.txt genome_accessible.fa ancestral.fa simStats/ outFile.fvec`  
 
 ### Make training sets 
 *I thought this made equal trainingsets, but it does not. If your training fvecs are of different length they will get caught in an assert statement in the code.*
@@ -32,15 +32,14 @@ Train data with discoal in same way as described in the diploSHIC [soup-to-nuts]
    * linkedPartialHard.fvec
    * partialSoft.fvec
    * linkedPartialSoft.fvec  
-## Testing
-### Test data to feature vectors  *Same options as sims*
- * `python2 testing_convert_to_FVs.py spNeut.msOut.gz 2L,2R,3L,3R 5000 11 0.25 $pMisPol AOM_partial_stats.txt Anopheles-gambiae-PEST_CHROMOSOMES_AgamP3.accessible.fa anc.meru_mela.fa ./ spNeut.msOut.fvec` 
+
+## Testing  
+Evaluate the accuracy of your classification on test data. **Do not use the same data as training**
+### Test data to feature vectors  
+ * `python testing_convert_to_FVs.py neutral.msOut.gz 3R 5000 11 0.25 0.01 neutral_partial_stats.txt genome_accessible.fa ancestral.fa testStats/ neut.msOut.test.fvec` 
 ### Classify test data  
- * `python3 testing_deep_learning_classify.py classifierPickleFileName fvecDir numSubWins numSumStatsPerSubWin resultsDir accuracyFilesPrefix confusionMatrixFigFileName`
- * `python3 testing_deep_learning_classify.py testingData/FVs_no_nSL/$pop/ 11 89 testingData/ accuracy confusion_matrix.pdf`  
-#### *(alternative)* Classify test data using five-state classifier (see above)  
- * `testing_deep_learning_classify_5-state-complete-sweeps-only.sh`  
- * `testing_deep_learning_classify_5-state-complete-sweeps-only.py`  
+ * `python testing_deep_learning_classify.py classifierPickleFileName fvecDir numSubWins numSumStatsPerSubWin resultsDir accuracyFilesPrefix confusionMatrixFigFileName`  
+ * `python testing_deep_learning_classify.py classifier/model.npy testingData/ 11 90 testingData/ accuracy confusion_matrix.pdf`  
 
 ## Empirical *(real data)*  
 ### Feature vectors from real data *(data should be in h5 format)*  
