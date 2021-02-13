@@ -1,6 +1,6 @@
 # partialSHIC
 
-Example files include bash scripts that are hardcoded for the Xue et al. paper. Many of the options, though undescribed in the bash, are similar to the options in diploSHIC. I have done my best to add detail to this repo ... it was very confusing. I dont guarantee that anything is 100% correct, check it, let me know, and use at your own risk.
+Example files include bash scripts that are hardcoded for the Xue et al. paper. Many of the options, though undescribed in the bash, are similar to the options in diploSHIC. I have done my best to add detail to this repo. I dont guarantee that anything is 100% correct, check it, let me know, and use at your own risk.
 
 ## Training
 ### Simulated data to feature vectors  
