@@ -1,5 +1,3 @@
-import time
-startTime=time.clock()
 import sys
 from msTools import *
 from fvTools import *
@@ -232,5 +230,5 @@ for instanceIndex in range(len(hapArraysIn)):
 for subWinIndex in range(numSubWins):
   statFiles[subWinIndex].close()
 fvecFile.close()
-sys.stderr.write("total time spent calculating summary statistics and generating feature vectors: %g secs\n" %(time.clock()-startTime))
+
 

@@ -1,5 +1,3 @@
-import time
-startTime=time.clock()
 import sys
 import numpy as np
 np.random.seed(123)
@@ -36,7 +34,7 @@ sweeps=[]
 for i in range(0,9):
  sweeps.append(np.loadtxt('/'.join((fvecDir+'/'+fvecFiles[i]).split('//')),skiprows=1,usecols=list(range(1,((numSubWins*numSumStatsPerSubWin)+1)))))
  if i>0:
-  assert len(sweeps[0])==len(sweeps[i])
+   assert len(sweeps[0])==len(sweeps[i])
 sumstats=np.concatenate((sweeps[0],sweeps[1],sweeps[2],sweeps[3],sweeps[4],sweeps[5],sweeps[6],sweeps[7],sweeps[8]))
 sumstats=sumstats.reshape(sumstats.shape[0],numSumStatsPerSubWin,numSubWins,1)
 models=np.concatenate((np.repeat(0,len(sweeps[0])),np.repeat(1,len(sweeps[0])),np.repeat(2,len(sweeps[0])),np.repeat(3,len(sweeps[0])),np.repeat(4,len(sweeps[0])),np.repeat(5,len(sweeps[0])),np.repeat(6,len(sweeps[0])),np.repeat(7,len(sweeps[0])),np.repeat(8,len(sweeps[0]))))
@@ -65,5 +63,5 @@ netlayers_json=netlayers.to_json()
 with open(jsonFileName,"w") as json_file:
   json_file.write(netlayers_json)
 netlayers.save(npyFileName)
-sys.stderr.write("total time spent fitting and validating convolutional neural network for deep learning: %f secs\n" %(time.clock()-startTime))
+
 

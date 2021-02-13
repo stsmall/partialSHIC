@@ -51,9 +51,7 @@ else:
   assert len(unmasked)==chrLen
 ancArm=readFaArm(ancestralArmFaFileName).upper()
 sys.stderr.write("polarizing SNPs\n")
-polTime=time.clock()
 mapping,unmasked = polarizeSnps(unmasked,positions,refAlleles,altAlleles,ancArm)
-sys.stderr.write("took %s seconds to polarize SNPs\n" %((time.clock()-polTime)))
 def readSampleToPopFile(sampleToPopFileName):
   table={}
   with open(sampleToPopFileName) as sampleToPopFile:
