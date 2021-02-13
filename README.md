@@ -46,7 +46,7 @@ If you use [scikit-allel](http://alimanfoo.github.io/2017/06/14/read-vcf.html) y
 ### Feature vectors from real data *(data should be in h5 format)*  
  * `python empirical_convert_to_FVs.py chrArmFileName chrArm chrLen [segmentStart segmentEnd] subWinSize numSubWins unmaskedFracCutoff pMisPol partialStatAndDafFileName maskFileName ancestralArmFaFileName sampleToPopFileName targetPop statFileName fvecFileName`  
  * `python empirical_convert_to_FVs.py species.chr2.h5 2 49000000 1 5000000 5000 11 0.25 0.01 neutral_partial_stats.txt genome_accessible.fa ancestral.fa samples_pops.txt POP1 chr2.1-5mb.stats chr2.1-5mb.fvec`  
- * `empirical_merge_FVs.sh`  *this is necessary only if you step through the VCF(h5) in segments*  
 ### Classify feature vectors from real data  
+*WARNING I can not get this working ... will update when I figure it out*
  * `python empirical_deep_learning_classify.py classifierPickleFileName fvecFileName numSubWins numSumStatsPerSubWin bedFileName`  
  * `python empirical_deep_learning_classify.py classifier/model.npy empiricalData/pop1.chr2.fvec 11 90 results/pop1.chr2.bed`  
