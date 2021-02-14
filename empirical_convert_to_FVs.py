@@ -19,11 +19,11 @@ else:
   segmentStart=None
 
 chrArmFile=h5py.File(chrArmFileName,"r")
-genos=allel.GenotypeChunkedArray(chrArmFile["calldata/GT"])
-positions=allel.SortedIndex(chrArmFile["variants/POS"])
-refAlleles=chrArmFile['variants/REF']
-altAlleles=chrArmFile['variants/ALT']
-samples=chrArmFile["samples"]
+genos=allel.GenotypeChunkedArray(chrArmFile[chrArm]["calldata/GT"])
+positions=allel.SortedIndex(chrArmFile[chrArm]["variants/POS"])
+refAlleles=chrArmFile[chrArm]['variants/REF']
+altAlleles=chrArmFile[chrArm]['variants/ALT']
+samples=chrArmFile[chrArm]["samples"]
 
 chrLen=int(chrLen)
 assert chrLen>0
