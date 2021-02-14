@@ -56,7 +56,7 @@ netlayers.add(Dropout(0.5))
 netlayers.add(Dense(9, activation='softmax'))
 netlayers.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
 
-checkpoint=ModelCheckpoint(weightsFileName,monitor='val_acc',verbose=1,save_best_only=True,save_weights_only=True,mode='auto')
+checkpoint=ModelCheckpoint(weightsFileName,monitor='val_accuracy',verbose=1,save_best_only=True,save_weights_only=True,mode='auto')
 netlayers.fit(sumstats,models,batch_size=32,epochs=20,validation_data=(sumstats_val,models_val),callbacks=[checkpoint],verbose=1)
 
 netlayers_json=netlayers.to_json()
