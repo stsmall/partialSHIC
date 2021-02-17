@@ -46,6 +46,7 @@ If you use [scikit-allel](http://alimanfoo.github.io/2017/06/14/read-vcf.html) t
 `allel.vcf_to_hdf5('chrX.vcf', 'chrX.h5', fields='*', alt_number=1, group="X", overwrite=True)`  
 The script, empirical_convert_to_FVs, expects a group name matching the chromosome and only 1 alternate allele. scikit-allel by default stores 3 which throws an error when the script tries to polarize with an ancestral file.  
 ### Feature vectors from real data *(data should be in h5 format)*  
+*WARNING I can not get this working ... will update when I figure it out*
  * `python empirical_convert_to_FVs.py chrArmFileName chrArm chrLen [segmentStart segmentEnd] subWinSize numSubWins unmaskedFracCutoff pMisPol partialStatAndDafFileName maskFileName ancestralArmFaFileName sampleToPopFileName targetPop statFileName fvecFileName`  
  * `python empirical_convert_to_FVs.py species.chr2.h5 2 49000000 1 5000000 5000 11 0.25 0.01 neutral_partial_stats.txt genome_accessible.fa ancestral.fa samples_pops.txt POP1 chr2.1-5mb.stats chr2.1-5mb.fvec`  
 ### Classify feature vectors from real data  
