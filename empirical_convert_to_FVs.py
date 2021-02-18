@@ -177,7 +177,7 @@ def SAFEstats(hapsInSubWin,mappingDerivedInSubWin,dafsInSubWin):
       haf = eval(i)
       windowStats = []
       for x in haf.keys():
-        windowStats.append([haf[x])
+        windowStats.append(haf[x])
     else:
       windowStats=eval(i)
     statVals[i+"-Mean"]=np.mean(windowStats)
