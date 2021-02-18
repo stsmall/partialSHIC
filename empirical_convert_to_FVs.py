@@ -174,7 +174,10 @@ def SAFEstats(hapsInSubWin,mappingDerivedInSubWin,dafsInSubWin):
     if i=="SFS":
       windowStats=dafsInSubWin
     elif i=="HAFunique":
-      windowStats=[eval(i)[x] for x in eval(i)]
+      haf = eval(i)
+      windowStats = []
+      for x in haf.keys():
+        windowStats.append([haf[x])
     else:
       windowStats=eval(i)
     statVals[i+"-Mean"]=np.mean(windowStats)
