@@ -1,5 +1,5 @@
 import time
-startTime=time.clock()
+startTime=time.process_time()
 import sys
 import keras
 import numpy as np
@@ -54,5 +54,5 @@ sys.stderr.write("made predictions for %s total instances\n" %len(predictions))
 sys.stderr.write("predicted %d neutral regions (%f of all classified regions)\n" %(predictionCounts["Neutral"],(predictionCounts["Neutral"]/float(len(predictions)))))
 for i in range(1,9):
   sys.stderr.write("predicted %d %s sweep regions (%f of all classified regions)\n" %(predictionCounts[labelToClassName[i]],labelToClassName[i],(predictionCounts[labelToClassName[i]]/float(len(predictions)))))
-sys.stderr.write("total time spent classifying data in %s with convolutional neural network stored in %s : %f secs\n" %(fvecFileName,classifierPickleFileName,(time.clock()-startTime)))
+sys.stderr.write("total time spent classifying data in %s with convolutional neural network stored in %s : %f secs\n" %(fvecFileName,classifierPickleFileName,(time.process_time()-startTime)))
 
