@@ -52,6 +52,7 @@ else:
 ancArm=readFaArm(ancestralArmFaFileName).upper()
 sys.stderr.write("polarizing SNPs\n")
 mapping,unmasked = polarizeSnps(unmasked,positions,refAlleles,altAlleles,ancArm)
+
 def readSampleToPopFile(sampleToPopFileName):
   table={}
   with open(sampleToPopFileName) as sampleToPopFile:
@@ -59,6 +60,7 @@ def readSampleToPopFile(sampleToPopFileName):
       sample,pop = line.strip().split()
       table[sample]=pop
   return table
+
 sampleToPop=readSampleToPopFile(sampleToPopFileName)
 sampleIndicesToKeep=[x for x in range(len(samples)) if sampleToPop.get(samples[x],"popNotFound!")==targetPop]
 
@@ -90,6 +92,7 @@ statHeader="\t".join(statHeader)
 header="\t".join(header)
 
 precomputedStats={}
+
 def getSubWinBounds(subWinSize,positions):
   subWinStart=1
   subWinEnd=subWinStart+subWinSize-1
@@ -101,6 +104,7 @@ def getSubWinBounds(subWinSize,positions):
     if (subWinStart,subWinEnd) not in subWinBounds:
       subWinBounds.append((subWinStart,subWinEnd))
   return subWinBounds
+
 subWinBounds=getSubWinBounds(subWinSize,positions)
 dafs=alleleCounts[:,1]/float(len(sampleIndicesToKeep)*2)
 ihsVals=allel.stats.selection.ihs(haps,positions,use_threads=False,include_edges=False)
@@ -204,6 +208,7 @@ goodSubWins=[]
 for i in range(numSubWins):
   goodSubWins.append(False)
 subWinIndex=-1
+
 def getSnpIndicesInSubWins(subWinSize,positions):
   subWinStart=1
   subWinEnd=subWinStart+subWinSize-1
@@ -229,13 +234,13 @@ else:
   statFile.write(statHeader+"\n")
 if fvecFileName.lower() in ["none","false","default"]:
   if segmentStart!=None:
-    fvecFileName=targetPop+'.'+chrArm+'.'+segStart+'.fvec'
+    fvecFileName=targetPop+'.'+chrArm+'.'+segmentStart+'.fvec'
   else:
     fvecFileName=targetPop+'.'+chrArm+'.fvec'
 fvecFile=open(fvecFileName,"w")
 fvecFile.write(header+"\n")
 
-for subWinStart in range(firstSubWinStart,lastSubWinStart+1,subWinSize):
+for subWinStart in range(int(firstSubWinStart), int(lastSubWinStart)+1, int(subWinSize)):
   subWinEnd=subWinStart+subWinSize-1
   unmaskedFrac=unmasked[subWinStart-1:subWinEnd].count(True)/float(subWinSize)
   if len([x for x in positions if subWinStart<=x<=subWinEnd])==0:
