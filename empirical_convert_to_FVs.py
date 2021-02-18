@@ -18,12 +18,12 @@ else:
   chrArmFileName, chrArm, chrLen, subWinSize, numSubWins, unmaskedFracCutoff, pMisPol, partialStatAndDafFileName, maskFileName, ancestralArmFaFileName, sampleToPopFileName, targetPop, statFileName, fvecFileName = sys.argv[1:]
   segmentStart=None
 
-chrArmFile=h5py.File(chrArmFileName,"r")
-genos=allel.GenotypeChunkedArray(chrArmFile[chrArm]["calldata/GT"])
-positions=allel.SortedIndex(chrArmFile[chrArm]["variants/POS"])
-refAlleles=chrArmFile[chrArm]['variants/REF']
-altAlleles=chrArmFile[chrArm]['variants/ALT']
-samples=chrArmFile[chrArm]["samples"]
+chrArmFile = h5py.File(chrArmFileName,"r")
+genos = allel.GenotypeChunkedArray(chrArmFile[chrArm]["calldata/GT"])
+positions = allel.SortedIndex(chrArmFile[chrArm]["variants/POS"])
+refAlleles = chrArmFile[chrArm]['variants/REF']
+altAlleles = chrArmFile[chrArm]['variants/ALT']
+samples = chrArmFile[chrArm]["samples"]
 
 chrLen=int(chrLen)
 assert chrLen>0
@@ -169,6 +169,7 @@ def SAFEstats(hapsInSubWin,mappingDerivedInSubWin,dafsInSubWin):
      SAFE.append((phi[i]-kappa[i])/float(math.sqrt(dafsInSubWin[i]*(1-dafsInSubWin[i]))))
   statVals={}
   quantiles={"Lower95%":2.5,"Lower50%":25,"Upper50%":75,"Upper95%":97.5}
+  breakpoint()
   for i in ["HAF", "HAFunique", "phi", "kappa", "SFS", "SAFE"]:
     if i=="SFS":
       windowStats=dafsInSubWin
