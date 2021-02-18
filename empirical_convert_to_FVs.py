@@ -275,7 +275,7 @@ for subWinStart in range(int(firstSubWinStart), int(lastSubWinStart)+1, int(subW
       outVec+=normalizeFeatureVec(statVals[statName][-numSubWins:])
     midSubWinEnd=subWinEnd-(subWinSize*(numSubWins/2))
     midSubWinStart=midSubWinEnd-subWinSize+1
-    fvecFile.write("\t".join([chrArm, str(midSubWinStart), str(midSubWinEnd), str((subWinEnd-(subWinSize*numSubWins)+1))+"-"+str(subWinEnd)] + [str(x) for x in outVec]) + "\n")
+    fvecFile.write("\t".join([chrArm, str(int(midSubWinStart)), str(int(midSubWinEnd)), str((subWinEnd-(subWinSize*numSubWins)+1))+"-"+str(subWinEnd)] + [str(x) for x in outVec]) + "\n")
 
 if statFileName:
   statFile.close()

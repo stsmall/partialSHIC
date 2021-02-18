@@ -43,7 +43,9 @@ if bedFileName.lower() in ["none","false","default"]:
 bedFile=open(bedFileName,"w")
 for i in range(len(predictions)):
   chr,start,end=coords[i][:3]
-  start,end = int(start),int(end)
+  #TODO: change this back
+  #start,end = int(start),int(end)
+  start,end = int(float(start)),int(float(end))
   predictedClass=labelToClassName[predictions[i]]
   predictionCounts[predictedClass]+=1
   outlines.append("chr%s\t%d\t%d\t%s_%s_%s\t0\t.\t%d\t%d\t%s" %(chr, (start-1), end, predictedClass, chr, predictionCounts[predictedClass], (start-1), end, classToColorStr[predictedClass]))
