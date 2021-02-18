@@ -169,7 +169,6 @@ def SAFEstats(hapsInSubWin,mappingDerivedInSubWin,dafsInSubWin):
      SAFE.append((phi[i]-kappa[i])/float(math.sqrt(dafsInSubWin[i]*(1-dafsInSubWin[i]))))
   statVals={}
   quantiles={"Lower95%":2.5,"Lower50%":25,"Upper50%":75,"Upper95%":97.5}
-  breakpoint()
   for i in ["HAF", "HAFunique", "phi", "kappa", "SFS", "SAFE"]:
     if i=="SFS":
       windowStats=dafsInSubWin
