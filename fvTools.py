@@ -426,9 +426,7 @@ def readMaskDataForTraining(maskFileName, totalPhysLen,
             if line.startswith(">"):
                 if readingMasks and len(isAccessibleArm) >= totalPhysLen:
                     if vcfForMaskFileName:
-                        sys.stderr.write(
-                            "processing sites "\
-                             "and genos for %s\n" % (currChr))
+                        sys.stderr.write("processing sites and genos for %s\n" % (currChr))
                         windowedAccessibility, windowedGenoMask = getGenoMaskInfoInWins(
                             isAccessibleArm, genos, positions,
                             positions2SnpIndices, totalPhysLen, subWinLen, cutoff, genoCutoff)
@@ -450,9 +448,7 @@ def readMaskDataForTraining(maskFileName, totalPhysLen,
                     readingMasks = False
                 isAccessibleArm = []
                 if vcfForMaskFileName and readingMasks:
-                    sys.stderr.write("checking geno mask "\
-                            "info from %s for %s\n" % (
-                        vcfForMaskFileName, currChr))
+                    sys.stderr.write("checking geno mask info from %s for %s\n" % (vcfForMaskFileName, currChr))
                     genos, positions, positions2SnpIndices, isBiallelic = extractGenosAndPositionsForArm(
                         vcfFile, chroms, currChr, sampleIndicesToKeep)
             else:

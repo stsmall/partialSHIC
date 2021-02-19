@@ -53,7 +53,7 @@ bedFile = open(bedFileName, "w")
 bedFile.write('chrom\tclassifiedWinStart\tclassifiedWinEnd\tpredClass\t'
               'prob(neutral)\tprob(Hard)\tprob(linkedHard)\tprob(Soft)\t'
               'prob(linkedSoft)\tprob(PartialHard)\tprob(linkedPartialHard)\t'
-              'prob(PartialSoft)\tprob(linkedPartialSoft)\thq90\n')
+              'prob(PartialSoft)\tprob(linkedPartialSoft)\thq_{prob}\n')
 for i in range(len(predictions)):
     chrom, start, end = coords[i][:3]
     start, end = int(start), int(end)
