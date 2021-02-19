@@ -53,7 +53,7 @@ bedFile = open(bedFileName, "w")
 bedFile.write('chrom\tclassifiedWinStart\tclassifiedWinEnd\tpredClass\t'
               'prob(neutral)\tprob(Hard)\tprob(linkedHard)\tprob(Soft)\t'
               'prob(linkedSoft)\tprob(PartialHard)\tprob(linkedPartialHard)\t'
-              'prob(PartialSoft)\tprob(linkedPartialSoft)\thq_{prob}\n')
+              'prob(PartialSoft)\tprob(linkedPartialSoft)\thq_pred\n')
 for i in range(len(predictions)):
     chrom, start, end = coords[i][:3]
     start, end = int(start), int(end)
@@ -61,6 +61,7 @@ for i in range(len(predictions)):
     predictionCounts[predictedClass] += 1
     probs_ls = "\t".join(map(str, preds[i]))
     hq = np.where(preds[i] > float(prob))[0]
+    breakpoint()
     if len(hq) > 1:
         hq_pred = labelToClassName[hq[0]]
     else:
