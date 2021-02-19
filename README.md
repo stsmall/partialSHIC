@@ -50,4 +50,4 @@ The script, empirical_convert_to_FVs, expects a group name matching the chromoso
  * `python empirical_convert_to_FVs.py species.chr2.h5 2 49000000 1 5000000 5000 11 0.25 0.01 neutral_partial_stats.txt genome_accessible.fa ancestral.fa samples_pops.txt POP1 chr2.1-5mb.stats chr2.1-5mb.fvec`  
 ### Classify feature vectors from real data  
  * `python empirical_deep_learning_classify.py classifierPickleFileName fvecFileName numSubWins numSumStatsPerSubWin bedFileName hq%`  
- * `python empirical_deep_learning_classify.py classifier/model.npy empiricalData/pop1.chr2.fvec 11 90 results/pop1.chr2.bed hq%`  
+ * `python empirical_deep_learning_classify.py classifier/model.npy empiricalData/pop1.chr2.fvec 11 90 results/pop1.chr2.bed 0.90`  
