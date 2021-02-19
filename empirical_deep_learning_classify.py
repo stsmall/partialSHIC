@@ -61,8 +61,7 @@ for i in range(len(predictions)):
     predictionCounts[predictedClass] += 1
     probs_ls = "\t".join(map(str, preds[i]))
     hq = np.where(preds[i] > float(prob))[0]
-    breakpoint()
-    if len(hq) > 1:
+    if len(hq) > 0:
         hq_pred = labelToClassName[hq[0]]
     else:
         hq_pred = "None"
