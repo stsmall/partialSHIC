@@ -73,4 +73,4 @@ for i in range(1, 9):
     pc = predictionCounts[labelToClassName[i]]
     pl = labelToClassName[i]
     pf = predictionCounts[labelToClassName[i]]/len(predictions)
-    sys.stderr.write("predicted {pc} {pl} sweep regions ({pf} of all classified regions)\n")
+    sys.stderr.write(f"predicted {pc} {pl} sweep regions ({pf} of all classified regions)\n")
