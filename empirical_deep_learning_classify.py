@@ -65,6 +65,7 @@ for i in range(len(predictions)):
 bedFile.close()
 
 # stats
+sys.stderr.write("\n\n#####---Stats Out---#####\n")
 sys.stderr.write(f"made predictions for {len(predictions)} total instances\n")
 nc = predictionCounts["Neutral"]
 nf = predictionCounts["Neutral"]/len(predictions)
