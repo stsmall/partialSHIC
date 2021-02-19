@@ -33,7 +33,7 @@ for example in fvec:
 if not fvecData:
     sys.exit("Weird: no nan-less features in input file. Terminating...\n")
 
-#standardize shape
+# standardize shape
 fvecData = np.reshape(np.array(fvecData), (np.array(fvecData).shape[0], numSumStatsPerSubWin, numSubWins, 1))
 
 # make preds
@@ -54,14 +54,19 @@ bedFile = open(bedFileName, "w")
 bedFile.write('chrom\tclassifiedWinStart\tclassifiedWinEnd\tpredClass\t'
               'prob(neutral)\tprob(Hard)\tprob(linkedHard)\tprob(Soft)\t'
               'prob(linkedSoft)\tprob(PartialHard)\tprob(linkedPartialHard)\t'
-              'prob(PartialSoft)\tprob(linkedPartialSoft)\n')
+              'prob(PartialSoft)\tprob(linkedPartialSoft)\thq90\n')
 for i in range(len(predictions)):
     chrom, start, end = coords[i][:3]
     start, end = int(start), int(end)
     predictedClass = labelToClassName[predictions[i]]
     predictionCounts[predictedClass] += 1
     probs_ls = "\t".join(map(str, preds[i]))
-    bedFile.write(f"{chrom}\t{start-1}\t{end}\t{predictedClass}\t{probs_ls}\n")
+    hq = np.where(preds[i] > 0.90)[0]
+    if len(hq) > 1:
+        hq_pred = labelToClassName[hq[0]]
+    else:
+        hq_pred = "None"
+    bedFile.write(f"{chrom}\t{start-1}\t{end}\t{predictedClass}\t{probs_ls}\t{hq_pred}\n")
 bedFile.close()
 
 # stats
