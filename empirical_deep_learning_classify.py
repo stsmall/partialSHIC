@@ -40,7 +40,7 @@ fvecData = np.reshape(np.array(fvecData), (np.array(fvecData).shape[0], numSumSt
 preds = netlayers.predict(fvecData)
 predictions = np.argmax(preds, axis=1)  # best class
 
-labelToClassName = {0: "neutral", 1: "Hard", 2: "linkedHard", 3: "Soft", 4: "linkedSoft",
+labelToClassName = {0: "Neutral", 1: "Hard", 2: "linkedHard", 3: "Soft", 4: "linkedSoft",
                     5: "PartialHard", 6: "linkedPartialHard", 7: "PartialSoft", 8: "linkedPartialSoft"}
 predictionCounts = {}
 for i in range(9):
