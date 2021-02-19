@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
+"""
+python3 empirical_deep_learning_classify.py training.npy AOM.2L.fvec 11 90 AOM.2L.bed .90
+"""
 import numpy as np
 import keras
 import sys
 
-'''usage eg:
-python3 empirical_deep_learning_classify.py training.npy AOM.2L.fvec 11 89 AOM.2L.bed
-'''
-
-if len(sys.argv) != 6:
+if len(sys.argv) != 7:
     sys.exit("usage:\npython3 empirical_deep_learning_classify.py classifierPickleFileName fvecFileName numSubWins numSumStatsPerSubWin bedFileName\n")
 else:
-    classifierPickleFileName, fvecFileName, numSubWins, numSumStatsPerSubWin, bedFileName = sys.argv[1:]
+    classifierPickleFileName, fvecFileName, numSubWins, numSumStatsPerSubWin, bedFileName, prob = sys.argv[1:]
 
 # load model
 netlayers = keras.models.load_model(classifierPickleFileName)
@@ -61,7 +60,7 @@ for i in range(len(predictions)):
     predictedClass = labelToClassName[predictions[i]]
     predictionCounts[predictedClass] += 1
     probs_ls = "\t".join(map(str, preds[i]))
-    hq = np.where(preds[i] > 0.90)[0]
+    hq = np.where(preds[i] > prob)[0]
     if len(hq) > 1:
         hq_pred = labelToClassName[hq[0]]
     else:
