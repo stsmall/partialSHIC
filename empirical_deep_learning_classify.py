@@ -60,7 +60,7 @@ for i in range(len(predictions)):
     predictedClass = labelToClassName[predictions[i]]
     predictionCounts[predictedClass] += 1
     probs_ls = "\t".join(map(str, preds[i]))
-    hq = np.where(preds[i] > prob)[0]
+    hq = np.where(preds[i] > float(prob))[0]
     if len(hq) > 1:
         hq_pred = labelToClassName[hq[0]]
     else:
