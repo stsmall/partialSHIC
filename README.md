@@ -1,6 +1,11 @@
 # partialSHIC
+**This is a fork of xanderxue/partialSHIC. I refactored the code so that it should work with python3 < python3.9. I also added the prob of each class to the output similar to the diploSHIC output file.** 
+* val_acc to val_accuracy  
+* scipy.stats was called but not imported  
+* pep8 compliance: removed blind import statements  
+* Other fixes associated with porting to python3: list comprehension and variable scope  
 
-Example files include bash scripts that are hardcoded for the Xue et al. paper. Many of the options, though undescribed in the bash, are similar to the options in diploSHIC. I have done my best to add detail to this repo. I dont guarantee that anything is 100% correct, check it, let me know, and use at your own risk.
+Many of the options are similar to the options in diploSHIC. See the original partialSHIC repo for the bash scripts with hard-coded paths/files. I have attempted, with min effort, to add detail to this repo. I dont guarantee that anything is 100% correct, double check it yourself, and use at your own risk.
 
 ## Training
 Train data with discoal in same way as described in the diploSHIC [soup-to-nuts](https://github.com/kr-colab/diploSHIC/wiki/A-soup-to-nuts-example). For the partial sweeps, Xue et al., uses the range -Pc 0.2 0.99. If you have training sims already done for diploSHIC (hard, soft, neutral) then all you need is the partialHard and partialSoft. Use the same -x with the same 11 window locations and a default of 55000 bp.   
@@ -49,5 +54,6 @@ The script, empirical_convert_to_FVs, expects a group name matching the chromoso
  * `python empirical_convert_to_FVs.py chrArmFileName chrArm chrLen [segmentStart segmentEnd] subWinSize numSubWins unmaskedFracCutoff pMisPol partialStatAndDafFileName maskFileName ancestralArmFaFileName sampleToPopFileName targetPop statFileName fvecFileName`  
  * `python empirical_convert_to_FVs.py species.chr2.h5 2 49000000 1 5000000 5000 11 0.25 0.01 neutral_partial_stats.txt genome_accessible.fa ancestral.fa samples_pops.txt POP1 chr2.1-5mb.stats chr2.1-5mb.fvec`  
 ### Classify feature vectors from real data  
- * `python empirical_deep_learning_classify.py classifierPickleFileName fvecFileName numSubWins numSumStatsPerSubWin bedFileName hq%`  
+*I added a new option here to print out the class pred that passes a certain prob cutoff*  
+ * `python empirical_deep_learning_classify.py classifierPickleFileName fvecFileName numSubWins numSumStatsPerSubWin bedFileName prob`  
  * `python empirical_deep_learning_classify.py classifier/model.npy empiricalData/pop1.chr2.fvec 11 90 results/pop1.chr2.bed 0.90`  
